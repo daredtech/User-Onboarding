@@ -1,13 +1,31 @@
 import React from 'react';
 import {withFormik, Form, Field} from 'formik';
 
+
 function UserForm () {
     return(
-        <>
-        i am form
-        </>
+        <Form> 
+            <Field type='text' name='username' placeholder='username'/>
+            <Field type='email' name='email' placeholder='email'/>
+            <Field type='password' name='password' placeholder='password'/>        
+            {/* 
+            Terms of Service (checkbox)
+            */}
+            <Field type='checkbox' name='checkbox' />
+            <button> Submit </button>
+        </Form>
     )
-
 }
 
-export default UserForm;
+const FormikUserForm = withFormik({
+    mapPropsToValues({ username, email, password }) {
+      return {
+        username: username || "",
+        email: email || "",
+        password: password || ""
+      };
+    },
+  
+  })(UserForm );
+  
+  export default FormikUserForm;

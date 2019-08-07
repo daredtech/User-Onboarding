@@ -10,9 +10,12 @@ function UserForm ({values, errors, touched, status}) {
     // to update the users
     const [users, setUsers] = useState([]);
 
+    // temp
+    console.log('users', users)
+
     useEffect(() => {
         if (status){
-            setUsers(...users, status)
+            setUsers([...users, status])
         }
     }, [status])
 
@@ -47,6 +50,13 @@ function UserForm ({values, errors, touched, status}) {
             </label>
         
             <button type='submit'> Submit </button>
+
+            {/* temp */}
+            <div> 
+                {users.map(user => (<p>{user.data.username}</p>
+                ))}
+
+            </div>
         </Form>
     )
 }
@@ -99,7 +109,7 @@ const FormikUserForm = withFormik({
 
             .catch(error => {
                 // temp
-                console.log('unable to post');
+                console.log('unable to post', error);
             })
         
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {withFormik, Form, Field} from 'formik';
 import * as Yup from "yup"; // for validation
+import axios from 'axios';
 import { string } from 'postcss-selector-parser';
 import { booleanLiteral } from '@babel/types';
 
@@ -52,8 +53,7 @@ const FormikUserForm = withFormik({
     // to validate the input
     validationSchema: Yup.object().shape({
         username: Yup.string().required('Username is required'),
-        email: Yup.string().email(),
-        // password: Yup.string().required('Password is required')
+        email: Yup.string().email().required('Email is required'),
         password: Yup.string()
         .min(6, "Password must be 6 characters or longer")
         .required("Password is required")
@@ -65,8 +65,21 @@ const FormikUserForm = withFormik({
 
     // to handle the submit event
     handleSubmit (values) {
-        //temp
+        // temp
         console.log('submitting the following values: ', values);
+        // to make a post request
+        axios
+            .post('https://reqres.in/api/users', values)
+            .then(response => {
+                // temp
+                console.log('posted')
+            })
+            .catch(error => {
+                // temp
+                console.log('unable to post')
+
+            })
+        
     }
     
   })(UserForm );

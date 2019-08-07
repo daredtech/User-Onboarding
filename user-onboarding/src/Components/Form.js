@@ -26,34 +26,39 @@ function UserForm ({values, errors, touched, status}) {
 
     return(
         <Form className='user-form'> 
-            <Field type='text' name='username' placeholder='username'/>
+
+            <h2> Welcome! </h2>
+            <Field className='user-field' type='text' name='username' placeholder='username'/>
             <div className='form-error-message'> 
             {touched.username && errors.username && <p>{errors.username}</p>} 
             </div> 
 
-            <Field type='email' name='email' placeholder='email'/>
+            <Field className='user-field' type='email' name='email' placeholder='email'/>
             <div className='form-error-message'> 
             {touched.email && errors.email && <p>{errors.email}</p>} 
             </div> 
 
-            <Field type='password' name='password' placeholder='password'/>                 <div className='form-error-message'> 
+            <Field  className='user-field' type='password' name='password' placeholder='password'/>                 <div className='form-error-message'> 
             {touched.password && errors.password && <p>{errors.password}</p>} 
             </div> 
 
             <label className='terms-of-service'>
             <Field type='checkbox' name='checkbox' />
-            Terms of Service
             <div className='form-error-message'> 
             {touched.checkbox && errors.checkbox && <p>{errors.checkbox}</p>} 
             </div> 
+            <p> Terms of Service </p>
+          
             
             </label>
         
-            <button type='submit'> Submit </button>
+            <button className='user-button' type='submit'> Submit </button>
 
             {/* temp */}
             <div> 
-                {users.map(user => (<p>{user.data.username}</p>
+                {users.map(user => (
+                <p>
+                {user.data.username},{user.data.email} </p>
                 ))}
 
             </div>

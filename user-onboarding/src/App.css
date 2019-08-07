@@ -1,11 +1,37 @@
-.App {
-  /* text-align: center; */
+html{
+  height: 100%;
+  margin: 0 auto;
+  background-image: url('https://images.unsplash.com/photo-1486246772917-8947d0f7f541?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1875&q=80');
+  background-repeat: no-repeat;
+
 }
 
-/* .user-form{
+.App {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
 
-} */
+.user-form{
+  width: 30%;
+  border: 1px solid blue;
+  background: rgb(225, 225, 244, 0.3); 
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+}
 
+.user-field{
+  width: 70%;
+}
+
+.user-button{
+  width: 30%;
+}
+
+.terms-of-service{
+  display: flex;
+}
 /* .App-header {
   background-color: #282c34;
   min-height: 100vh;

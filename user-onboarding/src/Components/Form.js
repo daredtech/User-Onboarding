@@ -1,12 +1,26 @@
-import React from 'react';
-import {withFormik, Form, Field} from 'formik';
+import React, {useState, useEffect} from 'react';
+import {withFormik, Form, Field, setNestedObjectValues} from 'formik';
 import * as Yup from "yup"; // for validation
 import axios from 'axios';
 import { string } from 'postcss-selector-parser';
 import { booleanLiteral } from '@babel/types';
 
 // how the form will be rendered
-function UserForm ({values, errors, touched}) {
+function UserForm ({values, errors, touched, status}) {
+    // to update the users
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        if (status){
+            setUsers(...users, status)
+        }
+    }, [status])
+
+    console.log('i am the status: ', status);
+
+
+
+
     return(
         <Form className='user-form'> 
             <Field type='text' name='username' placeholder='username'/>
@@ -64,20 +78,28 @@ const FormikUserForm = withFormik({
 
 
     // to handle the submit event
-    handleSubmit (values) {
+    handleSubmit (values, {setStatus}) {
         // temp
         console.log('submitting the following values: ', values);
         // to make a post request
         axios
             .post('https://reqres.in/api/users', values)
+
+            // if successful, set the status to the response
             .then(response => {
                 // temp
-                console.log('posted')
+                console.log('i am response', response)
+
+                setStatus(response);
+                
+                // temp
+                console.log('posted');
             })
+            // if not successful, log an error
+
             .catch(error => {
                 // temp
-                console.log('unable to post')
-
+                console.log('unable to post');
             })
         
     }
